@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 40%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    <title> Grocery list </title>
+</head>
+
+<body>
+    <h1> Grocery list</h1>
+    <table id="table">
+        <tr>
+            <th> </th>
+            <th> Item </th>
+            <th> Count </th>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="value" /></td>
+            <td> Milk </td>
+            <td> 1</td>
+        </tr>
+    </table>
+    <br>
+
+    <form id="groceryForm">
+        <label for="item">Enter item:</label>
+        <input type="text" id="item" name="item">
+        <br><br>
+        <label for="count">Enter Count:</label>
+        <input type="text" id="count" name="count">
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        document.getElementById("groceryForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevents form submission
+
+            const itemName = document.getElementById("item").value;
+            const itemCount = document.getElementById("count").value;
+
+            if (itemName === "" || itemCount === "") {
+             
+                alert("Please enter both item name and count.");
+                return;
+            }
+
+            const table = document.getElementById("table");
+
+            // Create a new row
+            const newRow = table.insertRow(-1);
+
+            // Create checkbox cell
+            const checkboxCell = newRow.insertCell(0);
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkboxCell.appendChild(checkbox);
+
+            // Create item name cell
+            const itemCell = newRow.insertCell(1);
+            itemCell.textContent = itemName;
+
+            // Create count cell
+            const countCell = newRow.insertCell(2);
+            countCell.textContent = itemCount;
+
+            // Clear input fields after submission
+            document.getElementById("item").value = "";
+            document.getElementById("count").value = "";
+        });
+    </script>
+</body>
+
+</html>
