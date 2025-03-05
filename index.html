@@ -3,83 +3,57 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        table,
-        th,
-        td {
-            border: 1px solid black;
-            border-collapse: collapse;
-            width: 40%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-    </style>
-    <title> Grocery list </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Grocery List</title>
 </head>
 
 <body>
-    <h1> Grocery list</h1>
-    <table id="table">
-        <tr>
-            <th> </th>
-            <th> Item </th>
-            <th> Count </th>
-        </tr>
-        <tr>
-            <td><input type="checkbox" name="value" /></td>
-            <td> Milk </td>
-            <td> 1</td>
-        </tr>
-    </table>
-    <br>
+    <h1>Grocery List</h1>
+    
+    <!-- Form Section -->
+    <div class="form-container">
+        <form id="groceryForm" class="form-inline justify-content-center">
+            <div class="form-group">
+                <label for="item" class="sr-only">Enter item:</label>
+                <input type="text" id="item" name="item" class="form-control mr-2" placeholder="Enter item">
+            </div>
+            <div class="form-group">
+                <label for="category" class="sr-only">Category:</label>
+                <select id="category" name="category" class="form-control mr-2">
+                    <option value="Dairy">Dairy</option>
+                    <option value="Fruits">Fruits</option>
+                    <option value="Vegetables">Vegetables</option>
+                    <option value="Bakery">Bakery</option>
+                    <option value="Meat">Meat</option>
+                    <option value="Condiments">Condiments</option>
+                    <option value="Toiletries">Toiletries</option>
+                    <option value="Miscellaneous">Miscellaneous</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Item</button>
+        </form>
+    </div>
 
-    <form id="groceryForm">
-        <label for="item">Enter item:</label>
-        <input type="text" id="item" name="item">
-        <br><br>
-        <label for="count">Enter Count:</label>
-        <input type="text" id="count" name="count">
-        <br>
-        <input type="submit" value="Submit">
-    </form>
-
-    <script>
-        document.getElementById("groceryForm").addEventListener("submit", function (event) {
-            event.preventDefault(); // Prevents form submission
-
-            const itemName = document.getElementById("item").value;
-            const itemCount = document.getElementById("count").value;
-
-            if (itemName === "" || itemCount === "") {
+    <!-- Table Section -->
+    <div class="table-container">
+        <table class="table table-striped table-bordered" id="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Done</th>
+                    <th scope="col">Item</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Items will be dynamically added here -->
              
-                alert("Please enter both item name and count.");
-                return;
-            }
+            </tbody>
+        </table>
+    </div>
 
-            const table = document.getElementById("table");
-
-            // Create a new row
-            const newRow = table.insertRow(-1);
-
-            // Create checkbox cell
-            const checkboxCell = newRow.insertCell(0);
-            const checkbox = document.createElement("input");
-            checkbox.type = "checkbox";
-            checkboxCell.appendChild(checkbox);
-
-            // Create item name cell
-            const itemCell = newRow.insertCell(1);
-            itemCell.textContent = itemName;
-
-            // Create count cell
-            const countCell = newRow.insertCell(2);
-            countCell.textContent = itemCount;
-
-            // Clear input fields after submission
-            document.getElementById("item").value = "";
-            document.getElementById("count").value = "";
-        });
-    </script>
+    <script src="grocery.js"></script>
 </body>
 
 </html>

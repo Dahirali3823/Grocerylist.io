@@ -1,0 +1,36 @@
+body {
+    background-color: lightcyan;
+    font-family: Arial, sans-serif;
+}
+
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #007bff;
+}
+
+.form-container {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.form-container input,
+.form-container select {
+    margin: 5px;
+}
+
+.table-container {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+.btn-edit,
+.btn-delete {
+    margin-right: 5px;
+}
